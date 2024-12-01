@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes en S3</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2d6a4f;
+            --secondary-color: #5c9b6e;
+            --background-start: #5cb85c;
+            --background-end: #a8e6a1;
+            --text-color: #333;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin: 2rem 0;
+            font-size: 2.5em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .reports-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin: 2rem auto;
+        }
+
+        .reports-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(92, 155, 110, 0.1);
+            outline: none;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .report-card {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--secondary-color);
+        }
+
+        .report-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .report-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .report-details {
+            flex-grow: 1;
+        }
+
+        .report-name {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .report-meta {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .report-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .report-button {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .view-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .view-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .download-btn {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .download-btn:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-btn a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn a:hover {
+            color: var(--secondary-color);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            nav a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .reports-container {
+                padding: 1rem;
+            }
+
+            .reports-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/"><i class="fas fa-table"></i> Tabla de Pagos</a>
+            <a href="/agregar"><i class="fas fa-plus-circle"></i> Agregar Pago</a>
+            <a href="/reportes"><i class="fas fa-chart-bar"></i> Reportes</a>
+        </div>
+    </nav>
+    
+    <div class="page-container">
+        <h1>Reportes Disponibles</h1>
+        
+        <div class="reports-container">
+            <div class="reports-header">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar reportes..." id="searchInput">
+                </div>
+            </div>
+
+            {% if archivos %}
+            <ul class="reports-grid">
+                {% for archivo in archivos %}
+                <li class="report-card">
+                    <div class="report-info">
+                        <i class="fas fa-file-pdf report-icon"></i>
+                        <div class="report-details">
+                            <div class="report-name">{{ archivo.nombre }}</div>
+                            <div class="report-meta">
+                                <i class="fas fa-calendar-alt"></i> Última actualización: {{ archivo.fecha }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-actions">
+                        <a href="{{ archivo.url }}" target="_blank" class="report-button view-btn">
+                            <i class="fas fa-eye"></i> Ver
+                        </a>
+                        <a href="{{ archivo.url }}" download class="report-button download-btn">
+                            <i class="fas fa-download"></i> Descargar
+                        </a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="empty-state">
+                <i class="fas fa-folder-open"></i>
+                <h3>No hay reportes disponibles</h3>
+                <p>Los reportes aparecerán aquí cuando estén disponibles.</p>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="back-btn">
+            <a href="/">
+                <i class="fas fa-arrow-left"></i>
+                Regresar a la tabla
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Función de búsqueda en tiempo real
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            const reportCards = document.querySelectorAll('.report-card');
+            
+            reportCards.forEach(card => {
+                const reportName = card.querySelector('.report-name').textContent.toLowerCase();
+                if (reportName.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Pagos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2d6a4f;
+            --secondary-color: #5c9b6e;
+            --background-color: #f3f9f5;
+            --text-color: #333;
+            --hover-color: #e4f7e1;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin: 2rem 0;
+            font-size: 2.5em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: var(--hover-color);
+            transition: background-color 0.3s ease;
+        }
+
+        td {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .valor-pagado {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .fecha {
+            white-space: nowrap;
+        }
+
+        .back-btn {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .back-btn a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .back-btn a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-eliminar {
+            color: #e74c3c;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .btn-eliminar:hover {
+            color: #c0392b;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            th, td {
+                padding: 0.8rem;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/"><i class="fas fa-table"></i> Tabla de Pagos</a>
+            <a href="/agregar"><i class="fas fa-plus-circle"></i> Agregar Pago</a>
+            <a href="/reportes"><i class="fas fa-chart-bar"></i> Reportes</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Datos de Pagos</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cédula</th>
+                        <th>Valor Pagado</th>
+                        <th>Fecha de Consignación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pago in pagos %}
+                    <tr>
+                        <td>{{ pago[0] }}</td>
+                        <td>{{ pago[1] }}</td>
+                        <td>{{ pago[2] }}</td>
+                        <td class="valor-pagado">${{ "{:,.2f}".format(pago[3]) }}</td>
+                        <td class="fecha">{{ pago[4] }}</td>
+                        <td>
+                            <a href="{{ url_for('eliminar_pago', cedula=pago[2]) }}" class="btn-eliminar">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="back-btn">
+            <a href="/"><i class="fas fa-arrow-left"></i> Regresar a la página principal</a>
+        </div>
+    </div>
+</body>
+</html>

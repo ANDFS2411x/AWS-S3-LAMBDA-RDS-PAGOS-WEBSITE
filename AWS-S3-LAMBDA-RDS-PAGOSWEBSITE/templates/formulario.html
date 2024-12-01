@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Pago</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2d6a4f;
+            --secondary-color: #5c9b6e;
+            --accent-color: #4caf50;
+            --background-start: #5cb85c;
+            --background-end: #a8e6a1;
+            --text-color: #333;
+            --error-color: #dc3545;
+            --success-color: #28a745;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin: 2rem 0;
+            font-size: 2.5em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(92, 155, 110, 0.1);
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        .help-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .back-btn {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-btn a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            nav a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animación de carga */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Mensaje de éxito/error */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            border: 1px solid var(--error-color);
+            color: var(--error-color);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/"><i class="fas fa-table"></i> Tabla de Pagos</a>
+            <a href="/agregar"><i class="fas fa-plus-circle"></i> Agregar Pago</a>
+            <a href="/reportes"><i class="fas fa-chart-bar"></i> Reportes</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Agregar Nuevo Pago</h1>
+        <div class="form-container">
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> Pago agregado exitosamente
+            </div>
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> Error al agregar el pago
+            </div>
+
+            <form method="POST" id="payment-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre" required
+                               pattern="[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+" title="Solo se permiten letras y espacios">
+                    </div>
+                    <div class="help-text">Ingrese solo letras y espacios</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="apellido" name="apellido" placeholder="Ingrese el apellido" required
+                               pattern="[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+" title="Solo se permiten letras y espacios">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cedula">Cédula</label>
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="cedula" name="cedula" placeholder="Ingrese el número de cédula" required
+                               pattern="[0-9]{8,10}" title="Ingrese entre 8 y 10 dígitos">
+                    </div>
+                    <div class="help-text">Ingrese entre 8 y 10 dígitos numéricos</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="valor">Valor Pagado</label>
+                    <div class="input-group">
+                        <i class="fas fa-dollar-sign"></i>
+                        <input type="number" id="valor" name="valor" placeholder="Ingrese el valor del pago" required
+                               min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha">Fecha de Consignación</label>
+                    <div class="input-group">
+                        <i class="fas fa-calendar"></i>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                </div>
+
+                <button type="submit">
+                    <i class="fas fa-save"></i>
+                    Guardar Pago
+                </button>
+            </form>
+        </div>
+        
+        <div class="back-btn">
+            <a href="/">
+                <i class="fas fa-arrow-left"></i>
+                Regresar a la tabla
+            </a>
+        </div>
+    </div>
+</body>
+</html>
