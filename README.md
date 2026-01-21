@@ -22,73 +22,69 @@
 
 <div align="center">
 
+<img src="https://readme-typing-svg.demolab.com?font=Poppins&size=18&duration=3000&pause=1000&color=10B981&center=true&vCenter=true&width=600&lines=Serverless+Payment+Management;Automated+Reports+%26+Real-time+Tracking" alt="AWS Dashboard" />
+
+<br/>
+
 **A powerful serverless payment management system combining AWS Cloud Services with a modern, interactive web dashboard for real-time payment tracking and automated report generation.**
 
-?? *Automated � Scalable � Serverless � Real-time* 
+💰 *Automated • Scalable • Serverless • Real-time* 
 
 </div>
 
 ---
 
-## ? Key Features
+## ✨ Key Features
 
-?? **Fully Automated Reports** � Scheduled daily payment generation at 8:00 AM using EventBridge  
-?? **Real-time Web Dashboard** � Interactive Flask interface for live payment tracking  
-?? **AWS Lambda Processing** � Serverless PDF report generation with zero infrastructure overhead  
-??? **MySQL RDS Storage** � Secure relational database with comprehensive payment records  
-?? **S3 Cloud Storage** � Automatic report archival with pre-signed secure downloads  
-?? **Complete CRUD Operations** � Add, view, update, and delete payment transactions  
-?? **Enterprise Security** � IAM roles, least privilege access, and secure credential management  
-?? **Responsive UI** � Beautiful, modern web interface accessible on all devices  
+💚 **Fully Automated Reports** — Scheduled daily payment generation at 8:00 AM using EventBridge  
+📊 **Real-time Web Dashboard** — Interactive Flask interface for live payment tracking  
+⚡ **AWS Lambda Processing** — Serverless PDF report generation with zero infrastructure overhead  
+🗄️ **MySQL RDS Storage** — Secure relational database with comprehensive payment records  
+☁️ **S3 Cloud Storage** — Automatic report archival with pre-signed secure downloads  
+🔄 **Complete CRUD Operations** — Add, view, update, and delete payment transactions  
+🔐 **Enterprise Security** — IAM roles, least privilege access, and secure credential management  
+📱 **Responsive UI** — Beautiful, modern web interface accessible on all devices  
 
 ---
 
-## ??? System Architecture
+## 🏗️ System Architecture
 
 This project integrates multiple AWS services into a cohesive, serverless payment management ecosystem:
 
 ```
-+--------------------------------------------------------------+
-�           AWS AUTOMATED PAYMENT REPORTING SYSTEM             �
-+--------------------------------------------------------------�
-�                                                              �
-�  EVENT-DRIVEN AUTOMATION                                     �
-�  +--------------+    +--------------+    +----------+       �
-�  � EventBridge  �---?�   Lambda     �---?�   S3     �       �
-�  �  Daily       �    �  PDF Report  �    �  Archive �       �
-�  �  8:00 AM     �    �  Generation  �    �  Storage �       �
-�  +--------------+    +--------------+    +----------+       �
-�         �                    �                               �
-�         +----------------------------------+                �
-�                                            �                �
-�                                   +--------?---------+      �
-�                                   �   RDS MySQL      �      �
-�                                   �  Payment DB      �      �
-�                                   �  � Names         �      �
-�                                   �  � IDs           �      �
-�                                   �  � Amounts       �      �
-�                                   �  � Dates         �      �
-�                                   +------------------+      �
-�                                            ?                �
-�                                            �                �
-�  USER INTERFACE LAYER                      �                �
-�  +------------------------------------------------------+   �
-�  �         Flask Web Dashboard                         �   �
-�  �  +------------------------------------------------+ �   �
-�  �  � ?? Payment Records Table                       � �   �
-�  �  � ? Add New Payments                           � �   �
-�  �  � ???  Delete Transactions                       � �   �
-�  �  � ?? Download Reports (S3 Integration)          � �   �
-�  �  � ?? View Payment Statistics                    � �   �
-�  �  +------------------------------------------------+ �   �
-�  +-----------------------------------------------------+   �
-�                                                              �
-+--------------------------------------------------------------+
+AWS Cloud Ecosystem
+├── EventBridge (Daily Scheduler - 8:00 AM)
+│   └── Lambda Function (PDF Report Generation)
+│       └── S3 (Report Archive & Storage)
+│
+├── RDS MySQL (Payment Database)
+│   ├── Payment Records
+│   ├── User Information
+│   └── Transaction History
+│
+└── Flask Web Dashboard
+    ├── 💳 Payment Records Table
+    ├── ➕ Add New Payments
+    ├── 🗑️  Delete Transactions
+    ├── 📥 Download Reports
+    └── 📊 Payment Statistics
 ```
+---
+## 📸 Dashboard Preview
+
+
+- 📷 **Reports Section**  
+  ![Reports Section](AWS-S3-LAMBDA-RDS-PAGOSWEBSITE/reportedepagos.png)
+
+- 📷 **Add Payment Form**  
+  ![Add Payment Form](AWS-S3-LAMBDA-RDS-PAGOSWEBSITE/agregarnuevospagos.png)
+
+- 📷 **Main Payment Dashboard**  
+  ![Main Payment Dashboard](AWS-S3-LAMBDA-RDS-PAGOSWEBSITE/tabladepagos.png)
 
 ---
 
-## ?? Tech Stack
+## 🛠️ Tech Stack
 
 <div align="center">
 
@@ -99,187 +95,154 @@ This project integrates multiple AWS services into a cohesive, serverless paymen
 ![HTML5](https://img.shields.io/badge/HTML5-E34C26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![PyMySQL](https://img.shields.io/badge/PyMySQL-4479A1?style=flat-square&logo=python&logoColor=white)
 ![Boto3](https://img.shields.io/badge/Boto3-FF9900?style=flat-square&logo=amazon-aws&logoColor=white)
-![JSON](https://img.shields.io/badge/JSON-000000?style=flat-square&logo=json&logoColor=white)
 
 </div>
 
 ---
 
-## ?? Project Overview
+## 📋 Project Overview
 
 This project demonstrates enterprise-level serverless architecture combining AWS cloud services with a modern web dashboard. It provides an end-to-end solution for automated payment processing, reporting, and management.
 
 **Core Capabilities:**
-- ? Automatic daily report generation via AWS Lambda at scheduled times
-- ?? Real-time payment data visualization and management
-- ?? Cloud-native, zero-infrastructure-management architecture
-- ?? Complete CRUD (Create, Read, Update, Delete) payment operations
-- ?? Seamless S3 integration for report archival and distribution
-- ?? Enterprise-grade security with IAM access control
+- 💚 Automatic daily report generation via AWS Lambda at scheduled times
+- 📊 Real-time payment data visualization and management
+- ☁️ Cloud-native, zero-infrastructure-management architecture
+- 🔄 Complete CRUD (Create, Read, Update, Delete) payment operations
+- 💾 Seamless S3 integration for report archival and distribution
+- 🔐 Enterprise-grade security with IAM access control
 
 ---
 
-## ?? Core AWS Components
+## 🔗 AWS Components
 
-### ?? **Amazon RDS - MySQL Database**
+### 🗄️ **Amazon RDS - MySQL Database**
 Reliable relational database for payment data persistence:
-- ?? **Customer Information** � First name, last name
-- ?? **Unique Identification** � ID number (Cedula)
-- ?? **Payment Records** � Transaction amounts
-- ?? **Timestamp Data** � Payment dates and times
-- ?? **Query Capability** � Full SQL support for complex reporting
+- 👤 **Customer Information** — First name, last name
+- 🆔 **Unique Identification** — ID number (Cedula)
+- 💰 **Payment Records** — Transaction amounts
+- 📅 **Timestamp Data** — Payment dates and times
+- 🔍 **Query Capability** — Full SQL support for complex reporting
 
-### ?? **AWS Lambda - Serverless Compute**
+### ⚡ **AWS Lambda - Serverless Compute**
 Autonomous report generation function:
-- ? **Scheduled Triggers** � Executes daily at 8:00 AM via EventBridge
-- ?? **Data Query** � Retrieves previous day's payment transactions
-- ?? **PDF Generation** � Creates professional payment summary reports
-- ?? **Statistics** � Calculates totals and transaction counts
-- ?? **S3 Upload** � Automatically distributes reports to S3 bucket
-- ?? **Error Handling** � Comprehensive logging and failure notifications
+- ⏰ **Scheduled Triggers** — Executes daily at 8:00 AM via EventBridge
+- 📊 **Data Query** — Retrieves previous day's payment transactions
+- 📄 **PDF Generation** — Creates professional payment summary reports
+- 📈 **Statistics** — Calculates totals and transaction counts
+- 📤 **S3 Upload** — Automatically distributes reports to S3 bucket
+- 🚨 **Error Handling** — Comprehensive logging and failure notifications
 
-### ?? **Amazon S3 - Object Storage**
+### 💾 **Amazon S3 - Object Storage**
 Scalable cloud storage for report archival:
-- ?? **Report Storage** � Long-term retention of all generated PDFs
-- ?? **Easy Retrieval** � Organized folder structure by date
-- ?? **Pre-signed URLs** � Secure temporary download links
-- ?? **Access Control** � IAM policies for restricted access
-- ?? **Versioning** � Track report history and changes
-- ?? **Cost Efficient** � Pay only for storage used
+- 📚 **Report Storage** — Long-term retention of all generated PDFs
+- 🔗 **Easy Retrieval** — Organized folder structure by date
+- 🔐 **Security** — Encryption at rest and in transit
+- 🌍 **Accessibility** — Pre-signed URLs for secure external access
+- 💪 **Durability** — 99.999999999% data durability guarantee
 
-### ?? **Amazon EventBridge - Event Scheduling**
-Precision timing for automated workflows:
-- ?? **Cron Expression** � `0 8 * * ? *` (8:00 AM daily)
-- ?? **Lambda Trigger** � Direct integration with Lambda functions
-- ?? **Event Logging** � Complete audit trail of executions
-- ? **Zero Overhead** � Serverless event routing, no infrastructure
-
-### ??? **AWS IAM - Identity & Access Management**
-Enterprise security with least privilege principle:
-- ?? **User Roles** � Separate accounts for Lambda and database access
-- ?? **Access Keys** � Secure credential management
-- ?? **Permissions** � Granular policy restrictions per service
-- ?? **Audit Trail** � Complete logging of all API calls
+### 🌐 **Flask Web Application**
+Modern, responsive user interface:
+- 📋 **Payment Dashboard** — Real-time table with all transactions
+- ➕ **Add Payments** — Form to insert new payment records
+- 🗑️ **Delete Records** — Remove payment entries by ID
+- 📥 **Report Downloads** — Access archived reports from S3
+- 📱 **Responsive Design** — Optimized for desktop and mobile devices
 
 ---
 
-## ?? Web Dashboard - Flask Application
+## 🚀 Quick Start
 
-### Dashboard Features
+```bash
+# 1. Clone the repository
+git clone (https://github.com/ANDFS2411x/AWS-S3-LAMBDA-RDS-PAGOS-WEBSITE/)
+cd AWS-S3-LAMBDA-RDS-PAGOS-WEBSITE
 
-**?? Payment Records Display**
-- Tabular view of all payment transactions
-- Sortable columns for easy data browsing
-- Clean, intuitive interface design
+# 2. Install dependencies
+pip install -r requirements.txt
 
-**? Add New Payments**
-- Form-based payment entry
-- Input validation and error handling
-- Real-time database updates
+# 3. Configure your AWS credentials
+# Set up your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 
-**??? Delete Transactions**
-- Quick deletion by ID
-- Confirmation prompts for safety
-- Immediate UI refresh after deletion
+# 4. Update database configuration
+# Edit DB_CONFIG in app.py with your RDS endpoint
 
-**?? S3 Report Downloads**
-- Direct integration with S3 storage
-- Pre-signed secure URLs
-- Download report history
+# 5. Run the Flask application
+python app.py
 
-**?? Responsive Design**
-- Mobile-friendly interface
-- Cross-browser compatibility
-- Modern CSS styling
+# 6. Open browser and navigate to http://localhost:5000
+```
 
 ---
 
-## ?? Project Structure
+## 📁 Project Structure
 
 ```
 AWS-S3-LAMBDA-RDS-PAGOS-WEBSITE/
-�
-+-- README.md                          # Project documentation
-�
-+-- AWS-S3-LAMBDA-RDS-PAGOSWEBSITE/   # Main application directory
-�   +-- app.py                         # Flask application & routes
-�   �   +-- Database connections
-�   �   +-- Payment CRUD operations
-�   �   +-- S3 integration
-�   �
-�   +-- templates/                     # HTML templates
-�       +-- tabla.html                 # Payment records display
-�       +-- formulario.html            # Payment entry form
-�       +-- reportes.html              # Report management page
+├── README.md
+└── AWS-S3-LAMBDA-RDS-PAGOSWEBSITE/
+    ├── app.py                 # Flask application
+    ├── templates/
+    │   ├── formulario.html    # Payment form
+    │   ├── tabla.html         # Payment records table
+    │   └── reportes.html      # Reports section
+    └── static/                # CSS, JavaScript files
 ```
 
 ---
 
-## ?? Quick Start Guide
+## 🔧 Configuration
 
-### Prerequisites
-- ?? **AWS Account** with appropriate permissions
-- ?? **Python 3.11+** installed locally
-- ?? **pip** package manager
-- ?? **Git** for version control
-
-### Installation Steps
-
-**1?? Clone the Repository**
-```bash
-git clone https://github.com/yourusername/AWS-S3-LAMBDA-RDS-PAGOS-WEBSITE.git
-cd AWS-S3-LAMBDA-RDS-PAGOS-WEBSITE
+### Environment Variables
+```env
+DB_HOST=your-rds-endpoint.rds.amazonaws.com
+DB_USER=admin
+DB_PASSWORD=your-secure-password
+DB_NAME=payment_database
+S3_BUCKET=your-bucket-name
+AWS_REGION=us-east-1
 ```
 
-**2?? Install Python Dependencies**
-```bash
-pip install -r requirements.txt
+### Database Schema
+```sql
+CREATE TABLE pagos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Apellido VARCHAR(100) NOT NULL,
+    Cedula VARCHAR(20) UNIQUE NOT NULL,
+    Valor_PagosPagado DECIMAL(10, 2) NOT NULL,
+    Fecha_Consignacion DATE NOT NULL
+);
 ```
-
-**3?? Configure AWS Credentials**
-```bash
-aws configure
-```
-
-**4?? Start the Flask Application**
-```bash
-cd AWS-S3-LAMBDA-RDS-PAGOSWEBSITE
-python app.py
-```
-
-Application will be available at: `http://localhost:5000`
 
 ---
 
-## ?? Security Best Practices
+## 🎯 Usage Workflow
 
-? **Least Privilege Access** � IAM users have minimal required permissions  
-? **Environment Variables** � Sensitive data stored securely  
-? **S3 Pre-signed URLs** � Secure temporary access links  
-? **Database Encryption** � RDS encryption at rest and in transit  
-? **API Security** � CORS configuration and input validation  
-? **Audit Logging** � CloudTrail logging for all AWS API calls  
-? **Public Access Block** � S3 bucket configured with public access denied  
+1. **View Payments** — Navigate to the home page to see all payment records
+2. **Add Payment** — Click "Agregar Pago" to add a new payment record
+3. **Download Reports** — Access pre-generated reports from the Reports section
+4. **Automated Reports** — Lambda automatically generates reports daily at 8:00 AM
+5. **Archive** — Reports are automatically saved to S3 for long-term storage
 
 ---
 
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Poppins&size=18&duration=3000&pause=1000&color=10B981&center=true&vCenter=true&width=600&lines=Built+with+%E2%98%81%EF%B8%8F+and+AWS;Enterprise+Payment+Solutions" alt="Built with AWS"/>
+<img src="https://readme-typing-svg.demolab.com?font=Poppins&size=16&duration=3000&pause=1000&color=10B981&center=true&vCenter=true&width=500&lines=Built+with+AWS+%26+Python;Serverless+%26+Scalable" alt="Built with" />
 
-<br/>
 
-### ?? **Author**
 
-Made with ?? by **Andr�s F�bregas** (ANDFS2411x)  
-*Full-Stack Developer | Cloud Solutions Architect*
+## 👨‍💻 Author
 
-<br/>
-
-</div>
+**Andrés Fábregas**  
+Software Developer & Cloud Architect
 
 ---
 
-**Last Updated:** January 2026 | **Version:** 1.0.0 | **Status:** ? Production Ready
+<div align="center">
+
+⭐ If you found this project helpful, please consider giving it a star! ⭐
+
+</div>
