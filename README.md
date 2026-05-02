@@ -74,7 +74,7 @@ AWS Cloud Ecosystem
 
 
 - 📷 **Reports Section**  
-  ![Reports Section](AWS-S3-LAMBDA-RDS-PAGOSWEBSITE/reportedepagos.png)
+  ![Reports Section](AWS-S3-LAMBDA-RDS-PAGOSWEBSITE/reportedepagos.jpg)
 
 - 📷 **Add Payment Form**  
   ![Add Payment Form](AWS-S3-LAMBDA-RDS-PAGOSWEBSITE/agregarnuevospagos.png)
