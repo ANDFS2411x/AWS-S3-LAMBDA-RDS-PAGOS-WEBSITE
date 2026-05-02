@@ -140,7 +140,7 @@ Scalable cloud storage for report archival:
 - 🔗 **Easy Retrieval** — Organized folder structure by date
 - 🔐 **Security** — Encryption at rest and in transit
 - 🌍 **Accessibility** — Pre-signed URLs for secure external access
-- 💪 **Durability** — 99.999999999% data durability guarantee
+
 
 ### 🌐 **Flask Web Application**
 Modern, responsive user interface:
